@@ -1,0 +1,33 @@
+http://127.0.0.1:8000/
+
+A barra final é importante pois diz que estamos indo em algum lugar do servidor.
+
+além do mais é recomendado ver os códigos de status http.
+
+https://developer.mozilla.org/pt-BR/docs/Web/HTTP/Status
+
+É sempre recomendado ler as mensagens de erro, para saber o que está acontecendo.
+Aliás, independente do site, nunca começa com barra "/", apenas termina com barra.
+
+Para criarmos algum  link do site;
+
+    path('blog/',),
+
+Precisamos do próprio str, e do content-type.
+
+Ele funciona ao modo, request <-> response. Ele forma uma requisição e envia pro servidor
+através da rede, confere se ela está certa, e quando chegar no servidor, ele irá
+conferir e retornar algum código.
+
+O django funciona do modo Model View Template 
+
+MVT M que usa a base de dados, 
+o view ele recebe a request e decidir o que fazer, 
+sendo ele uma função ou classe  que recebe a request.
+
+def my_view(request):
+    print('Posso fazer outras coisas')
+    return HttpResponse("Uma mensagem para alguém especial")
+
+Agora a view recebe uma request do cliente, e ela retorna uma reponse. No meio disso
+pode ser feito o que quiser.

@@ -1,0 +1,41 @@
+Se quiser colocar algo na raiz do site, primeiramente, deverá que colocar a url vazia
+que significa a raiz do site.
+
+E pode criar uma outra função chamada "home".
+
+def home(request):
+    locale_ = "Home"
+    return HttpResponse(f"Uma mensagem vindo da {locale_}")
+
+
+urlpatterns = [
+    path("", home),
+]
+
+Por conta do django ser HTTP request <-> HTTP reponse ele é "stateless" quando
+a conexão não tem estado, no caso, nada no meio da mesma.
+
+Alias, quando você atualiza a pág, e por exemplo ,colocou um "print" lá.
+
+def home(request):
+    locale_ = "Home"
+    print(locale_)
+    return HttpResponse(f"Uma mensagem vindo da {locale_}")
+
+O print será mostrado no terminal.
+
+Se tiver no navegador, pode clicar em inspecionar depois nos 3 pontinhos localizado
+no canto direito superior, ao lado direito da engrenagem e ao esquerdo de um "X".
+Lá aperta no undock, no caso a primeira opção mostrada na parte superior.
+Assim fica uma janela específica, como se fosse o que está acontecendo de baixo
+dos panos no navegador.
+
+Estaremos no "elements" apenas olhar a parte superior da página, então devemos
+ir ao "Network".
+
+Logo aperte um "ctrl-r" ou "f5" para atualizar a página, e lá irá ver o nome do processo
+com uma resposta de status.
+
+Clicando no lugar, irá mostrar no "general" o url, o request method, o status code,
+o remote address e o referrer policy.
+Tanto que seu navegador enche o request header sem você fazer nada.

@@ -1,0 +1,42 @@
+Primeira coisa que o django faz é 
+
+def main():
+    """Run administrative tasks."""
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'project.settings')
+
+Definindo uma variável de sistema chamado django series module, que seria aonde
+está o arquivo de configuração do seu django. Tanto que na pasta project,
+possui a settings.py
+E é lá aonde você irá configurar tudo do seu projeto.
+
+Tanto que possui uma BASE_DIR para pegar o caminho de onde você está;
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+
+Usa o "resolve()" para pegar o caminho absoluto, depois pega a pasta mãe dessa pasta
+que seria a project, e por fim ele pega mais uma vez da pasta mãe, puxando para a sua
+raiz do projeto.
+
+Esse arquivo é praticamente o coração do seu django.
+Tanto que nós devemos criar apps para o django, porém já vem algumas prontas como
+
+INSTALLED_APPS = [
+    'django.contrib.admin',        -> Para admininstração 
+    'django.contrib.auth',         -> Para autenticação
+    'django.contrib.contenttypes', -> Para tipos de dados/cabeçalhos
+    'django.contrib.sessions',     -> Para sessões quando quer salvar coisas no servidor
+    'django.contrib.messages',     -> Para Mensagens rápidas
+    'django.contrib.staticfiles',  -> E -para arquivos estáticos
+]
+
+O django também suporta middleware.
+Middleware são um tipo de padrão de projeto que utilizamos basicamente quando fazemos
+uma coisa no meio de outra coisa, exemplo "Fazer alguma coisa entre o ponto - a
+e o ponto - b".
+Podemos criar nossos middleware, exemplo autenticar, negar, entre coisas do tipo.
+
+Outra coisa importante é o;
+
+project.urls.
+
+Ela é a url mãe de todas a url do seu programa.

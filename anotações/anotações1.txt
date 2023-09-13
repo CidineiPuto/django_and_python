@@ -1,0 +1,26 @@
+O comando "mkdir" criar uma pasta, apenas passar mkdir aonde quiser que ela seja criada
+pelo terminal, depois passe o nome logo na frente.
+
+django-admin startproject nomeDoProjeto
+Cria uma pasta chamada pelo nome do projeto, e dentro dela irá vir as coisas importantes
+sobre o django.
+
+Mas algo que acontece é que, no nomeDoProjeto possui uma outra pasta com o mesmo nome
+pra resolver isso, faça o seguinte;
+ 
+django-admin startproject project .
+
+Faz com que todas as coisas vão para a raiz do projeto, por conta do "."
+
+Agora apenas rode "python manage.py runserver" para subir o servidor.
+
+Logo ele irá passar um arquivo http, ex:
+
+http://127.0.0.1:8000/
+
+Tanto que quando você atualiza a página, será mostrado as mudanças no terminal.
+
+Para sair, só apertar 'ctrl-c'
+
+Mas é recomendado ser feito o projeto em uma página a parte.
+

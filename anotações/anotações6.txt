@@ -1,0 +1,26 @@
+Digamos que queremos um app para blog, e uma para home.
+Saiba que cada app criado, quer dizer que uma coisa é completamente diferente
+da outra, então, se formos criar um e-commerce, e todas as coisas de lá forem
+parecidas uma com a outra, não precisamos de muitos apps.
+Para criar um app faça o seguinte;
+
+python manage.py startapp home
+
+Primeiro, colocamos o startapp depois passamos um nome á aplicação.
+
+Na pasta do app criado podemos fazer alguma coisa com elas.
+
+Para os models criados, terão que ser registrar eles na admnistração.
+E criar nos próprios models.
+
+E também temos o views que é o que estávamos criando.
+
+As views baseadas em funções são chamadas de "function base views".
+Mas também tem as views de classe que costumam a ser mais modernas.
+
+Se por exemplo, vamos criar um cliente (que é da loja) não precisamos criar o app
+da loja e do cliente separado, porém suponhamos que iremos criar um e-commerce, e um blog
+que não se comunica com o e-commerce, aí já podemos criar apps separados.
+
+Então saiba que apps separados é aqueles que realmente não formos querer 
+conversar um com outro.

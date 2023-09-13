@@ -1,0 +1,13 @@
+O django é um webframework servindo para desenvolver um site ( qualquer aplicação subida 
+na internet ) django é uma ferramenta como qualquer outra, cheia de coisas
+que é feito justamente para criar um site sem ter que criar todas aquelas coisas.
+Ele encoraja um desenvolvimento rápido, e pragmático.
+
+Além do django ser bastante seguro, ele pode ter um tamanho enorme, e pode aumentar
+mesmo depois da criação ter terminado.
+
+Em 99,99% dos casos, normalmente é só usado o django-admin para " startproject ".
+Isso só quando não possui um projeto django ainda.
+
+Django-admin e manage.py faz praticamente a mesma coisa e tem acesso a mesma coisa,
+porém para criar o manage.py precisa usar o django admin pra tal.
