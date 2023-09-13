@@ -1,0 +1,5 @@
+Quando tiver refatorando o código nunca tire o que está funcionando até colocar
+outra coisa funcionando, então deixe a função lá.
+
+O "from django.shortcuts import render" irá renderizar um arquivo html.
+E aí não precisamos ficar escrevendo todo nosso html dentro da view.

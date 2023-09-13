@@ -15,25 +15,13 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.http import HttpResponse
 from django.urls import path
 
-# HTTP Request <-> HTTP response
-# Model View Template MVC
-
-
-def blog(request):
-    # locale_ = "blog"
-    return HttpResponse(f"Uma mensagem vindo da/o {locale_}.")
-
-
-def home(request):
-    locale_ = "Home"
-    return HttpResponse(f"Uma mensagem vindo da/o {locale_}.")
-
+from blog import views as blog_views
+from home import views as home_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("blog/", blog),
-    path("", home),
+    path("blog/", blog_views.blog_function_view),
+    path("", home_views.home_function_view),
 ]
