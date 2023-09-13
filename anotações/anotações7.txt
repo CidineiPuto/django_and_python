@@ -3,3 +3,64 @@ outra coisa funcionando, então deixe a função lá.
 
 O "from django.shortcuts import render" irá renderizar um arquivo html.
 E aí não precisamos ficar escrevendo todo nosso html dentro da view.
+
+Caso você tenha diversas repetições de url, você pode aninhar elas.
+
+# http://127.0.0.1:8000/blog/
+# http://127.0.0.1:8000/blog/articles/
+# http://127.0.0.1:8000/blog/articles/comments/
+# http://127.0.0.1:8000/blog/articles/categories/
+# http://127.0.0.1:8000/blog/articles/authors
+Exemplo de várias repetições
+
+No apps, não possui nenhum arquivo chamado urls.py, mas pode criar elas em suas
+apps.
+
+Após os urls ser criados e configurados conforme queremos
+
+########################################################## blog > urls.py > ...
+
+from django.urls import path
+
+from . import views  # . = blog
+
+urlpatterns = [
+    path("", views.blog_function_view),
+]
+
+########################################################## home > urls.py > ...
+
+from django.urls import path
+
+from . import views  # . = home
+
+urlpatterns = [
+    path("", views.home_function_view),
+]
+
+###############################################################################
+
+Agora dentro do url principal, iremos importar include
+
+from django.urls import include, path
+
+
+urlpatterns = [
+    path("", include('home.urls')),
+    path("blog/", include('blog.urls')),
+    path("admin/", admin.site.urls),
+]
+
+Esses arquivos será colocado no urlpatterns. Lembre, de passar no include a str
+do caminho do que você quer.
+O url do blog está vazio e mesmo assim funciona, por conta do "blog/" estar sendo
+incluido na url do project.
+
+E assim, dentro do blog pode colocar outros urls;
+
+urlpatterns = [
+    path("", views.blog_function_view),
+    path("exemplo/", views.exemplo_function_view),
+]
+
+E irá funcionar da mesma forma.
