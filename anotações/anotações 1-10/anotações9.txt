@@ -1,0 +1,47 @@
+Na pasta do settings terá todas as configurações relacionadas em seu django, e possui
+uma com o nome de "DIRS" Lá pode adicionar diretórios.
+
+        "DIRS": [
+            BASE_DIR / "base",
+        ],
+
+E lá dentro do dir pode colocar algo como "global" aonde estarão os templates
+globais.
+Se olhar para o canto direito inferior após entrar em um arquivo .html 
+irá ver algo chamado HTML, ao lado esquerdo do "go live" e ao direito do
+CRLF, lá irá ter como mudar seu tipo de arquivo para django HTML
+algo diferente do próprio html. Por exemplo, se você digitar "block" isso irá ocorrer;
+
+<body>
+    <h1>{% block texto %} BASE {% endblock texto %}</h1>
+</body>
+
+Para ver se está funcionando podemos adicionar isso dentro da view da home;
+
+def home_function_view(request):
+    return render(
+        request,
+        "global/base.html",
+    )
+
+Por conta da base já fazer parte do caminho, só é necessário colocar "global".
+
+Mas agora, só voltar o home para o jeito que estava e iremos extender o index do
+home.
+Dentro do index.html do HOME, iremos colocar isso;
+
+{% extends "global/base.html" %}
+
+Agora, ele irá virar um tipo de extensão.
+
+Aquele block que fizemos dentro do base.html, possui algo chamado "texto" que é
+o nome do block. É possível sobescrever o blog, fazendo o seguinte;
+
+{% block texto %} Agora o texto mudou! {% endblock texto %}
+
+Dessa forma o texto é mudado.
+
+Isso é como se fosse um super template, para que os outros que extenderem esse texto
+usem o block. Quando o html é extendido o html inteiro é como se tivesse viajado
+para o outro módulo.
+É basicamente um tipo de "herança".
