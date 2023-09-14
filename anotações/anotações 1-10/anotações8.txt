@@ -1,0 +1,68 @@
+Para renderizar html puro, podemos usar o render.
+Primeiramente, iremos mudar nossa view;
+
+def home_function_view(request):
+    return render(
+        request,
+        'home.html'
+    )
+
+
+Vamos precisar de um template para a home, pode ser home.html.
+Iremos criar um templates, dentro de cada pasta, menos a principal. Pois, o
+django garante que será procurado na pág templates, de maneira automática, então
+só criarmos um artigo, por exemplo "home.html".
+
+Se aparecer a mensagem que o template não existe, você tem que colocar as configurações
+no installed apps.
+Bem aqui v
+
+INSTALLED_APPS = [
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+]
+
+
+Irá ficar dessa maneira;
+
+INSTALLED_APPS = [
+    "django.contrib.admin",
+    "django.contrib.auth",
+    "django.contrib.contenttypes",
+    "django.contrib.sessions",
+    "django.contrib.messages",
+    "django.contrib.staticfiles",
+    "home",
+    "blog",
+]
+
+Tome cuidado caso criar dois arquivos (template) com o mesmo nome.
+Pois qualquer um que o django pegar primeiro é o que ele irá usar nas duas views,
+mesmo os arquivos estando em apps diferentes.
+
+Você terá que criar uma pasta dentro de templates com o nome do app, depois, irá
+enviar os templates lá para dentro.
+
+Após isso irá alterar a view.
+
+def blog_function_view(request):
+    return render(
+        request,
+        "blog/home.html",
+    )
+
+
+def exemplo_function_view(request):
+    return render(
+        request,
+        "blog/exemplo.html",
+    )
+
+Isso é chamado de namespace e evita colisão de nomes de arquivos iguais.
+
+Quando você tem um arquivo que quer se referir a ele como home ( página inicial )
+pode chamar ele de index.
