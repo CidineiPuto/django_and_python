@@ -1,0 +1,21 @@
+Agora com isso que fizemos ficou só um único problema, este foi que por conta de termos
+colocado o include na pág principal (base) em todas as partes, isso ficará lá, mas há
+como consertar isso.
+
+Só colocarmos um block, e o include dentro do block;
+
+    {% block posts %}{% endblock posts %}
+
+Agora, vamos no index lá do blog.
+
+E lá, iremos adicionar isso;
+
+{% block posts %} 
+  {% include "global/partials/postblock.html" %}
+{% endblock posts %}
+
+Aliás o nome da classe da main, não necessita ser posts;
+
+<main class="content">
+    {% block posts %}{% endblock posts %}
+</main>

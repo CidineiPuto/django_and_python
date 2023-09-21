@@ -1,0 +1,38 @@
+se apertar ctrl+p, fica mais fácil em sua navegação.
+já
+ctrl+shift+p é um comando.
+Iremos usar uma API, do json que já vem pronta.
+
+"https://jsonplaceholder.typicode.com"
+
+Lá no /post, podemos ver algo;
+
+{
+    "userId": 1,
+    "id": 1,
+    "title": "sunt aut facere repellat provident occaecati excepturi optio reprehenderit",
+    "body": "quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto"
+  },
+
+Então, vamos colocar dentro de um article do html, isto;
+
+    <article class="post">
+        <header>
+            <h2 class="post__title">
+                Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            </h2>
+        </header>
+        <div class="post__body">
+            Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+            Quisquam, odio vero? Itaque fuga alias vitae ex tenetur, 
+            accusamus ducimus sit harum amet tempora dolorum quas distinctio ea 
+            aliquid nobis doloribus corporis? Dignissimos placeat repudiandae 
+            labore deleniti nam nostrum maxime accusamus quos laborum ad. Unde, 
+            nam ipsa. Tempore itaque labore placeat?
+        </div>
+    </article>
+
+Agora só duplicar os arquivos. Mas, é melhor usarmos um partial.
+
+Agora, só colocarmos os arquivos dentro de um <main>.
+Lembre-se que o main é uma tag que vai ser única na pág.

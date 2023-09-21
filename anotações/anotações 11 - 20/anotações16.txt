@@ -1,0 +1,27 @@
+Quando vemos a api do "jasonplaceholder" no "posts/" tudo é escrito em jason
+que é bem semelhante ao dict do python.
+
+é possível fazer for no block do dh.
+
+{% block posts %}
+  {% for post in posts %} # post recebe cada post do for, e posts é a chave do context dentro de blog/views.py
+    {% include "global/partials/postblock.html" %}
+  {% endfor posts %}
+{% endblock posts %}
+
+Lembre que o POSTS, está bem no context do block. Lembre que o posts está dentro do 
+blog também, para o posts funcionar, iremos lá no postblock;
+
+<article class="post">
+    <header>
+        <h2 class="post__title">
+            {{ post.title }}
+        </h2>
+    </header>
+    <div class="post__body">
+        {{ post.body }}
+    </div>
+</article>
+
+Lembre que "{{}}" serve como print, os "post.(chave)" está pegando a chave de cada um
+dos itens deste dict, lembre-se que post, é o item separado após a ocorrência do for.

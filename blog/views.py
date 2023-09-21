@@ -1,10 +1,15 @@
 from django.shortcuts import render
 
+from . import data
+
 # Create your views here.
 
 
 def blog_function_view(request):
-    context = {"text": "Estamos no blog"}
+    context = {
+        "text": "Estamos no blog",
+        "posts": data.posts,
+    }
 
     return render(
         request,
