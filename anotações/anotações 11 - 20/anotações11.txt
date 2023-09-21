@@ -1,0 +1,70 @@
+É necessário arquivos estáticos.
+Assim como o django faz com templates, podemos fazer com nossos static files por app.
+Criando uma pasta com o nome "static".
+Dentro do static files, podemos criar um css com o nome "blue.css".
+
+Porém, todos os htmls estão ligados ao "base". Então lá dentro no head, é aonde
+vamos configurar nosso css.
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="...">
+</head>
+
+No href, iremos colocar o caminho de onde está o arquivo, pode ser um servidor externo,
+uma outra pasta dentro do servidor, qualquer coisa. O importante é colocarmos
+nosso caminho.
+
+O django é dinâmico, e já tem uma ideia de onde está nosso arquivo .css, então,
+precisamos usar algo chamado "load";
+
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+Isso carrega aquele app do arquivo estático. Então toda vez que formos utilizar
+um arquivo static, tem que usar o load static, e fazer o seguinte;
+
+{% load static %}<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href={% static "blue.css" %}>
+</head>
+
+
+Agora, ele irá encontar o blue.css, e será recarregado.
+
+A pasta de static já está configurada lá no settings, por isso, irá aparecer
+o arquivo normalmente.
+
+As pastas dos arquivos static estarão aqui;
+
+STATIC_URL = "static/"
+
+Para organizar, dentro da pasta static, irá ser colocado uma pág "home" e lá dentro
+o css.
+
+Após organizar tudo, só organizar o path do arquivo
+
+        <link rel="stylesheet" href="{% static 'home/css/blue.css' %}">
+
+Se quando formos arrumar a pasta, dependendo temos que incluir a pasta static, junto com
+global, por conta do arquivo que está na raiz ser base, e ele não precisar ser incluído
+
+Agora é necessário incluir os arquivos estáticos referentes a pasta base.
+
+STATICFILES_DIRS = [BASE_DIR / "base" / "static"]
+
+Agora sim irá dar certo.
+
+Mas o nome STATICFILES_DIRS é algo OBRIGATÓRIO, para dar certo.

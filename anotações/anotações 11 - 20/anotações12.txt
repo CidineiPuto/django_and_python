@@ -1,0 +1,47 @@
+Uma maneira de enviar o dado para o template, iremos usar o context, no context
+podemos usar o "{}" se tivermos na ordem certa, ou o "context={}".
+
+Dentro da function;
+
+def home_function_view(request):
+    return render(
+        request,
+        "home/index.html",
+        {"text": "Estamos na home"},
+    )
+
+
+Agora, no index, vamos fazer a seguinte configuração;
+
+{% block texto %} 
+    {{ text }} 
+{% endblock texto %}
+
+O texto que mudarmos na view, irá mudar lá.
+
+Podemos fazer isso até no próprio global, o que permite fazer coisas neste estilo;
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{{ title }}Site do rafa</title>
+
+O "site do rafa" irá aparecer caso nenhuma variável mude o nome do Title.
+
+def exemplo_function_view(request):
+    context = {
+        "text": "Estamos no exemplo",
+        "title": "Essa é uma página de exemplo",
+    }
+
+é o que podemos fazer pra mudar o title no exemplo, porém... se usarmos isso
+de maneira cujo não tenha nada para separar o title na frente, o "Site do rafa" irá
+ficar colado nesse texto, então podemos fazer coisas como;
+
+def exemplo_function_view(request):
+    context = {
+        "text": "Estamos no exemplo",
+        "title": "Essa é uma página de exemplo - ",
+    }
+
+Esses dados são importante para trabalharmos de maneira dinâmica com nossos templates

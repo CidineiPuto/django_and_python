@@ -1,0 +1,32 @@
+Ainda relacionado  aos templates, podemos usar ainda outras coisas.
+Sempre que vemos um "{% %}" estamos executando alguma coisa.
+
+Outra coisa que podemos fazer é incluir parte de código dentro de um template.
+Um exemplo que poderíamos fazer um "partial" para separar partes do código, 
+primeiro temos que criar dentro do global ou de onde você vai colocar esse partial,
+uma pasta com o nome partial.
+
+Vamos dizer que queremos uma partial para a head do nosso html.
+
+Na página de onde vai adicionar aquilo, você irá digitar o seguinte;
+
+{% include "global/partials/head.html" %}
+<body>
+    <h1>{% block texto %} {% endblock texto %}</h1>
+</body>
+</html>
+
+Agora, isso será adicionado.
+
+Então se tivermos muitas coisas, podemos colocar elas em partials para depois incluir
+em outras partes do mesmo.
+
+Podemos até incluir várias vezes a mesma coisa.
+
+Ex;
+
+    {% include "global/partials/paragrafo.html" %}
+    {% include "global/partials/paragrafo.html" %}
+    {% include "global/partials/paragrafo.html" %}
+    {% include "global/partials/paragrafo.html" %}
+

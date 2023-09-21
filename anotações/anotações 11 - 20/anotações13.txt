@@ -1,0 +1,69 @@
+Atualizar a pág sem cache
+
+" ctrl + f5 "
+
+é recomendado colocar as urls diretamante, indo nos partials do global, podemos criar um
+novo arquivo, "menu.html".
+
+Depois de fazer isso, é apenas fazer a inclusão do arquivo.
+
+{% include "global/partials/menu.html" %}
+
+No django não iremos colocar url hard coded nos "<a>"
+
+dentro disso iremos usar algo chamado url;
+
+        <li>
+            <a href="{% url "" %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url "" %}">Blog</a>
+        </li>
+        <li>
+            <a href="{% url "" %}">Exemplo</a>
+        </li>
+
+
+Se colocarmos assim;
+
+            <a href="{% url "home" %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url "blog" %}">Blog</a>
+        </li>
+        <li>
+            <a href="{% url "exemplo" %}">Exemplo</a>
+        </li>
+
+Não irá funcionar, pois temos que nomear nossas urls.
+
+Então temos que nomear as urls, em urls de cada app;
+
+urlpatterns = [
+    path("", views.home_function_view, name="home"),
+]
+
+Após colocar o url patterns de todos, já é possível fazer isto.
+
+Também pode ser usado um namespace
+
+app_name = "blog"
+
+# blog/
+urlpatterns = [
+    path("", views.blog_function_view, name="home"),
+    path("exemplo/", views.exemplo_function_view, name="exemplo"),
+]
+
+O blog seria o namespace de blog, então para configurar isso no menu, ficaria assim;
+
+
+        <li>
+            <a href="{% url "home:home" %}">Home</a>
+        </li>
+        <li>
+            <a href="{% url "blog:home" %}">Blog</a>
+        </li>
+        <li>
+            <a href="{% url "blog:exemplo" %}">Exemplo</a>
+        </li>
