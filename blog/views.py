@@ -7,7 +7,20 @@ from . import data
 
 def blog_function_view(request):
     context = {
-        "text": "Estamos no blog",
+        "posts": data.posts,
+    }
+
+    return render(
+        request,
+        "blog/index.html",
+        context,
+    )
+
+
+def post_function_view(request, id):
+    print("post", id)
+
+    context = {
         "posts": data.posts,
     }
 

@@ -1,0 +1,21 @@
+Para checar com if, else, vamos fazer o seguinte, lá no view.py do blog, iremos
+apagar dentro da function do blog, dentro da variável context, o "text",
+e vamos checar se ela existe ou não. Se a variável texto existe, fazemos alguma coisa,
+se não, não exibimos
+
+{% if text %}
+  <h1>{% block texto %}{% endblock texto %}</h1>
+{% endif %}
+
+
+Se o texto tiver, o h1 irá aparecer.
+
+No if, tem elif, e pode colocar até um else no final;
+
+{% if 1 %}
+    ...
+{% elif 1 %}
+    ...
+{% else 1 %}
+    ...
+{% endif %}

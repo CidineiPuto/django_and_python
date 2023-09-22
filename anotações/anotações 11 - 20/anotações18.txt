@@ -1,0 +1,78 @@
+Agora, iremos ver como colocar url dinâmicas no blog.
+A url do blog em si, é algo mais recomendado ser hard coded.
+
+
+Lembre que por conta do app_name = blog, tudo vai ter por exemplo,
+blog:home, e por aí vai.
+
+Para fazer algo dinamico, do url do blog:home, faça o seguinte;
+
+queremos que a pessoa acesse post,
+
+    path("post/", views.blog_function_view, name="post"),
+
+POR enquanto a view será do blog, mas enfim, na frente do post, iremos colocar algo
+dinâmico.
+Um exemplo;
+
+    path("post/<id>", views.blog_function_view, name="post"),
+
+Mas por enquanto irá dar erro, podemos mudar a view para algo acontencer, 
+pois a view do blog recebe um request, então a view precisa receber request e o id,
+com o erro blog() got an unexpected keyword argument "id".
+
+Por isso não é recomendado usar a mesma view, em urls diferentes.
+
+    path("post/<id>", views.post_function_view, name="post"),
+
+Na view dele, estamos recebendo o id;
+
+def post_function_view(request, id):
+
+testes automatizados vão permitir alterar uma coisa no programa sem a quebrar.
+Aliás no path, quando sabe que vai receber um inteiro, é melhor certificar de colocar
+o tipo nele;
+
+    path("post/<id>", views.post_function_view, name="post"),
+                ^ int = 
+    path("post/<int:id>", views.post_function_view, name="post"),
+
+
+Pois se colocar por exemplo "1a" não irá funcionar.
+Mas, se o int for retirado de lá, aí ele já permite que coloque qualquer coisa, se colocarmos
+o str por exemplo;
+
+https://docs.djangoproject.com/en/4.2/topics/http/urls/
+
+Caso a versão do django mude, é importante ver o url do django, para ver como funciona,
+em path converters por exemplo, mostra o que você pode usar no "<...>"
+
+Agora, para mudar a pág, podemos fazer o seguinte;
+
+            <a href="">
+                {{ post.title }}
+            </a>
+
+Lá em postblock, primeiramente vamos transformar o título em um link.
+
+            <a href="{% url "" %}">
+
+Aqui iremos solicitar uma url, se tivermos namespace, vamos usar o namespace,
+exemplo, blog:post.
+
+            <a href="{% url "blog:post" %}">
+
+Porém, se fazer só isso irá ocorrer o "no reverse match"
+Pois, precisamos passar o argumento do id;
+Lembre-se que temos acesso ao id pelo data.
+
+        <h2 class="post__title">
+            <a href="{% url "blog:post" post.id %}">
+                {{ post.title }}
+            </a>
+        </h2>
+
+
+Agora sim vai dar certo já que estamos buscando pelo post.id, lembre, o post veio do for
+feito no "posts" do data, aonde está os blogs.
+Agora, está tudo sendo acessado, e criado de maneira dinâmica.
