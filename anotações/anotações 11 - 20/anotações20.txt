@@ -1,0 +1,99 @@
+Agora vamos fazer algo no post, primeiramente, iremos criar uma variável 
+"found_post";
+
+    found_post = None
+
+    for post in data.posts:
+        if post["id"] == post_id:
+            found_post = post
+            break
+
+    context = {
+        "post": [found_post],
+    }
+
+no found_post irá encontrar UM post só, é um dicionário, e no posts, estamos usando uma lista
+contendo um único post.
+
+Agora, quando clicado em um post, você irá só para este post.
+
+Vamos duplicar o index, e renomear para post.
+
+Iremos lá no base, no partial no post block, iremos copiar ele, e colar no
+post.html.
+
+{% block posts %}
+  <article class="post single-post">
+    <header>
+        <h2 class="post__title">
+            <a href="{% url "blog:post" post.id %}">
+                {{ post.title }}
+            </a>
+        </h2>
+    </header>
+    <div class="post__body">
+        {{ post.body }}
+    </div>
+  </article>
+{% endblock posts %}
+
+Já que usamos só um post, não precisamos usar o for.
+Agora, no style.css no @media, faremos o seguinte;
+
+    .content:not(:has(.single-post)){
+        grid-template-columns: repeat(auto-fill, minmax(32rem, 1fr));
+    }
+
+
+Aliás, vamos lembrar de alterar na view, o render;
+
+    return render(
+        request,
+        "blog/post.html",
+        context,
+    )
+
+
+Agora, iremos tirar do context o "[]", estamos recebendo direto o post em si, lá no
+post, mas, não possui essa variável "post", então, na própria view, ao invés
+de passarmos "Posts" iremos passar só "post".
+
+    context = {
+        "post": found_post,
+    }
+
+Lembre, que temos algo chamado title, mas, no nosso post tem um title, então
+iremos fazer o seguinte;
+
+    context = {
+        "post": found_post,
+        "title": found_post["title"] + " - ",
+    }
+
+Porém irá dar problema de linguagem no title.
+
+    found_post: dict[str, Any] = None
+
+No found_post, iremos colocar o tipo dela, afinal, por ser None, o python entende
+que o seu tipo sempre será None por isso, irá ocorrer tal erro, agora, mostra que ela
+será uma "dict[str, any]" um dicionário que irá ter uma str e tem o tipo any, quando
+faz isso, também podemos colocar o " | None" que ela pode ser none.
+
+def post_function_view(request: HttpRequest, post_id: int):
+    found_post: dict[str, Any] | None = None
+
+    for post in data.posts:
+        if post["id"] == post_id:
+            found_post = post
+            break
+
+    if found_post is None:
+        raise Exception("Post não existe.")
+    
+    context = {
+        "post": found_post,
+        "title": found_post["title"] + " - ",
+    }
+
+
+Agora, com tudo isso sendo feito, agora resolvemos o problema.

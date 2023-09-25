@@ -1,0 +1,16 @@
+Na última aula, usamos um exception, para que caso o post não exista, levante um erro,
+mas, o mais certo, seria lançar um http response, com página not found (404).
+Os erros de cliente 400 - 499, são erros cometidos praticamente pelo próprio  cliente,
+em resumo.
+
+Iremos agora importar algo chamado
+
+from django.http import Http404
+
+E adicionarmos no lugar do exception anterior,
+
+    if found_post is None:
+        raise Http404("Post não existe.")
+
+
+

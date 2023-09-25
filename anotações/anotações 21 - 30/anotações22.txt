@@ -1,0 +1,47 @@
+### python manage.py collectstatic ( coleta os arquivos estáticos )
+use caso algo for modificado no css.
+
+O django não é um servidor então, esse python manage.py é para desenvolver uma aplicação.
+E um momento quando terminar, tem que configurar no settings o python debug, e no allowed
+hosts, é o que será permitido acessar agora nossa aplicação.
+
+ALLOWED_HOSTS = [
+    "127.0.0.1",
+]
+
+Quando o "DEBUG" for falso, os arquivos estáticos não iram funcionar.
+Em qualquer lugar da pasta que tiver arquivos estátios é recomendado usar namespace.
+
+Existe um comando nele, chamado "collectstatic" faz exatamente o que o comando diz coletando
+os comandos estáticos.
+
+Vai dar erro e ele vai falar que falta configurações no "STATIC ROOT", esse STATIC ROOT
+é aonde vamos lançar os arquivos estáticos.
+
+STATIC_ROOT = BASE_DIR / 'static_files'
+
+então vamos configurar aonde será jogado esses arquivos, afinal, o django não é um servidor
+por isso, precisamos fazer isto.              
+                                              
+O namespace é importante justamente, para que os nomes não ficam iguais.
+                                              
+Porém, quem vai servir os arquivos estáticos são o próprio servidor, então, vamos apontar
+esses arquivos de "static_files" pro servidor.
+
+Mas pode servir isso com algo chamado "White noise"
+
+https://whitenoise.readthedocs.io/en/latest/
+
+É um servidor bem simplificado só para vermos como pode ser feito em outros servidores.
+
+Vamos colocar o middleware deles acima de todos menos o de "SecurityMiddleware"
+
+MIDDLEWARE = [
+    # ...
+    "django.middleware.security.SecurityMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+    # ...
+]
+
+Agora que fez isso, e os estáticos foi coletados e os middlewares colocados, podemos subir
+o server.
